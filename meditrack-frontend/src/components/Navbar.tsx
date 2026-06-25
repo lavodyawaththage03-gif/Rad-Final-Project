@@ -15,9 +15,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-slate-800 dark:text-white hover:opacity-80 transition-opacity">
-          <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold">⚕</span>
-          </div>
+          <img src="/meditrack-logo.png" alt="MediTrack Logo" className="w-8 h-8 rounded-full object-cover" />
           <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">MediTrack</span>
         </Link>
 

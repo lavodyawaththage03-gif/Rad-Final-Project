@@ -228,9 +228,7 @@ export default function PharmacistDashboard() {
         {/* Sidebar */}
         <aside className="w-full md:w-64 bg-white border-r border-slate-200 flex flex-col z-20 sticky top-0 md:h-[calc(100vh-64px)] overflow-y-auto">
         <div className="p-6 border-b border-slate-100 flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/20">
-            M
-          </div>
+          <img src="/meditrack-logo.png" alt="MediTrack Logo" className="w-10 h-10 rounded-lg object-cover shadow-sm" />
           <div>
             <h1 className="text-xl font-bold text-slate-800 tracking-tight">MediTrack</h1>
             <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Pharmacist</p>

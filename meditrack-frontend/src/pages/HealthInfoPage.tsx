@@ -6,7 +6,7 @@ export default function HealthInfoPage() {
   const [activeTab, setActiveTab] = useState('news');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const categories = ['All', 'Local', 'International', 'University', 'Health', 'Children'];
+  const categories = ['All', 'Local', 'International', 'Health', 'Children'];
 
   // News & Updates Content
   const newsUpdates = {
@@ -27,14 +27,7 @@ export default function HealthInfoPage() {
         content: 'Sri Lanka Ministry of Health continues nationwide vaccination campaigns with emphasis on booster doses for vulnerable populations.',
         source: 'Ministry of Health Sri Lanka'
       },
-      {
-        id: 3,
-        title: 'Wayamba University Health Campus Expansion',
-        category: 'University',
-        date: 'December 12, 2024',
-        content: 'Wayamba University of Sri Lanka inaugurates a new health and wellness center to support student mental and physical health initiatives.',
-        source: 'Wayamba University'
-      },
+
       {
         id: 4,
         title: 'Dengue Fever Prevention Campaign',
@@ -97,14 +90,6 @@ export default function HealthInfoPage() {
       }
     ],
     university: [
-      {
-        id: 3,
-        title: 'Wayamba University Health Campus Expansion',
-        category: 'University',
-        date: 'December 12, 2024',
-        content: 'Wayamba University of Sri Lanka inaugurates a new health and wellness center to support student mental and physical health initiatives.',
-        source: 'Wayamba University'
-      }
     ],
     health: [
       {
@@ -181,13 +166,7 @@ export default function HealthInfoPage() {
         icon: '👶',
         content: 'Provide children with nutrient-rich foods including milk, eggs, fruits, and vegetables. Limit sugary snacks and drinks. Involve children in meal planning and cooking to develop healthy eating habits early.'
       },
-      {
-        id: 7,
-        title: 'Students: Take Regular Breaks',
-        category: 'University',
-        icon: '📚',
-        content: 'Take 5-10 minute breaks every hour while studying. Stand up, stretch, and rest your eyes. Regular breaks improve focus, prevent fatigue, and help retain information better. This is especially important during exam season.'
-      },
+
       {
         id: 8,
         title: 'Prevent Dengue Fever',
@@ -249,22 +228,7 @@ export default function HealthInfoPage() {
         content: 'Encourage children to engage in at least 1 hour of physical activity daily. Play outdoor games, sports, or dancing. Regular exercise promotes healthy growth, strong bones, and good mental health in children.'
       }
     ],
-    university: [
-      {
-        id: 7,
-        title: 'Students: Take Regular Breaks',
-        category: 'University',
-        icon: '📚',
-        content: 'Take 5-10 minute breaks every hour while studying. Stand up, stretch, and rest your eyes. Regular breaks improve focus, prevent fatigue, and help retain information better. This is especially important during exam season.'
-      },
-      {
-        id: 5,
-        title: 'Manage Stress Effectively',
-        category: 'University',
-        icon: '🧘',
-        content: 'Practice meditation, yoga, or deep breathing exercises to reduce academic stress. Connect with campus support services at Wayamba University. Maintain work-life balance and don\'t hesitate to seek help from counseling services.'
-      }
-    ],
+
     local: [
       {
         id: 8,
@@ -404,9 +368,9 @@ export default function HealthInfoPage() {
               About This Hub
             </h3>
             <p className="text-gray-700">
-              This Health Information Hub is provided in partnership with Wayamba University of Sri Lanka Health & Wellness Center. 
+              This Health Information Hub is provided for your wellness and safety. 
               For urgent health concerns, please consult with healthcare professionals or contact your nearest medical facility. 
-              For more information, visit the Wayamba University Health Services office or contact MediTrack support.
+              For more information, contact MediTrack support.
             </p>
           </div>
         </div>

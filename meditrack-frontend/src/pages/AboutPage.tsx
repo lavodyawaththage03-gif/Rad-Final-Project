@@ -6,32 +6,32 @@ import { Users, Heart, Target, Award } from 'lucide-react';
 export default function AboutPage() {
   const team = [
     {
-      name: 'Dr. D.H.C.P. Karunasekara',
-      position: 'Chief Medical Officer',
-      specialty: 'Healthcare Technology',
-      avatar: '👨‍⚕️',
-      bio: 'Leading our medical strategy and ensuring quality healthcare standards for all students.',
+      name: 'Mr. D.H.C.P. Karunasekara',
+      position: 'Project Manager',
+      specialty: 'Project Management',
+      avatar: '👨‍💼',
+      bio: 'Leads the whole Meditrack project, manages schedules, budgets, team coordination, and ensures the system is completed successfully.',
     },
     {
       name: 'Mr. A.N.C.B Athavuda',
-      position: 'Chief Technology Officer',
-      specialty: 'Software Development',
+      position: 'Technical Manager',
+      specialty: 'Technical Operations',
       avatar: '👨‍💼',
-      bio: 'Overseeing the technical infrastructure and development of the MediTrack platform.',
+      bio: 'Handles technical operations, software development, system maintenance, networking, and troubleshooting.',
     },
     {
       name: 'Mrs. J.A.V. Jayaweera',
-      position: 'Head of Clinical Affairs',
-      specialty: 'Medical Practice',
-      avatar: '👩‍⚕️',
-      bio: 'Managing clinical operations and ensuring best practices in patient care.',
+      position: 'Database Administrator (DBA)',
+      specialty: 'Data Management',
+      avatar: '👩‍💼',
+      bio: 'Manages patient and medical data, ensures data security, backup, recovery, and database performance.',
     },
     {
       name: 'Mr. M.U.N. Munaweera',
-      position: 'Operations Manager',
-      specialty: 'System Administration',
+      position: 'Quality Assurance & Security Manager',
+      specialty: 'Quality Assurance',
       avatar: '👨‍💼',
-      bio: 'Coordinating daily operations and system administration across all departments.',
+      bio: 'Tests the system for errors, ensures software quality, protects patient information, and monitors cybersecurity.',
     },
   ];
 
@@ -156,20 +156,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* University Partnership */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8 border-l-4 border-blue-600">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <Award className="w-6 h-6 text-blue-600" />
-              Wayamba University Partnership
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              MediTrack is proudly developed and maintained in partnership with Wayamba University of Sri Lanka. Our commitment is to provide the highest quality healthcare management system tailored to meet the unique needs of university students. Through continuous innovation and collaboration with our leadership team, we strive to set new standards in student healthcare.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16 bg-blue-600 text-white">

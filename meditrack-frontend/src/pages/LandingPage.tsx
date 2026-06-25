@@ -21,21 +21,8 @@ export default function LandingPage() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col items-center mb-6">
-            {/* Wayamba University Logo */}
-            <div className="mb-4 flex items-center justify-center gap-4">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-trsYWMKsRJQMAEqfziIqlYiWTg0CEI.png"
-                alt="Wayamba University of Sri Lanka"
-                width={80}
-                height={80}
-                className="rounded-full"
-              />
-            </div>
-            <p className="text-sm text-gray-600 font-semibold mb-4">
-              Wayamba University of Sri Lanka
-            </p>
-            <div className="w-20 h-20 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-4xl">⚕</span>
+            <div className="w-32 h-32 mx-auto rounded-3xl shadow-xl overflow-hidden border-4 border-white dark:border-slate-800 bg-white flex items-center justify-center mb-4 transition-transform hover:scale-105 duration-300">
+              <img src="/meditrack-logo.png" alt="MediTrack Logo" className="w-full h-full object-cover" />
             </div>
           </div>
           <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700 dark:from-blue-400 dark:to-indigo-400 mb-6 drop-shadow-sm">MediTrack</h1>
@@ -85,7 +72,7 @@ export default function LandingPage() {
             <div className="relative bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-800 dark:to-slate-800/80 rounded-3xl p-12 border border-blue-100 dark:border-slate-700 shadow-xl overflow-hidden text-center">
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-indigo-500"></div>
               <p className="text-slate-700 dark:text-slate-300 mb-8 text-lg leading-relaxed font-medium">
-                MediTrack is a comprehensive health management system designed specifically for Wayamba University of Sri Lanka students. Our platform streamlines healthcare management by providing easy access to health tracking, medication management, appointment scheduling, and expert medical professionals.
+                MediTrack is a comprehensive health management system designed specifically for university students. Our platform streamlines healthcare management by providing easy access to health tracking, medication management, appointment scheduling, and expert medical professionals.
               </p>
               <Link
                 to="/about"

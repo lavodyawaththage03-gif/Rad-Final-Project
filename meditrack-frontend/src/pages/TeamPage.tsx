@@ -6,43 +6,43 @@ export default function TeamPage() {
   const teamMembers = [
     {
       id: 1,
-      name: 'Dr. D.H.C.P. Karunasekara',
-      title: 'Chief Medical Officer',
-      department: 'Healthcare Technology',
-      role: 'doctor',
-      bio: 'Leading the healthcare technology initiatives and medical strategy for the MediTrack platform.',
-      experience: '20+ years in healthcare management',
-      expertise: ['Healthcare Management', 'Medical Technology', 'Clinical Operations']
+      name: 'Mr. D.H.C.P. Karunasekara',
+      title: 'Project Manager',
+      department: 'Project Management',
+      role: 'manager',
+      bio: 'Leads the whole Meditrack project, manages schedules, budgets, team coordination, and ensures the system is completed successfully.',
+      experience: '20+ years in project management',
+      expertise: ['Project Management', 'Team Coordination', 'Budgeting']
     },
     {
       id: 2,
       name: 'Mr. A.N.C.B Athavuda',
-      title: 'Chief Technology Officer',
-      department: 'Software Development',
+      title: 'Technical Manager',
+      department: 'Technical Operations',
       role: 'manager',
-      bio: 'Overseeing all technical development and infrastructure of the MediTrack platform.',
-      experience: '15+ years in software development',
-      expertise: ['Software Architecture', 'Cloud Infrastructure', 'Full-stack Development']
+      bio: 'Handles technical operations, software development, system maintenance, networking, and troubleshooting.',
+      experience: '15+ years in technical operations',
+      expertise: ['Software Development', 'System Maintenance', 'Networking']
     },
     {
       id: 3,
       name: 'Mrs. J.A.V. Jayaweera',
-      title: 'Head of Clinical Affairs',
-      department: 'Medical Practice',
-      role: 'doctor',
-      bio: 'Managing clinical operations and ensuring best practices in medical service delivery.',
-      experience: '18+ years in clinical practice',
-      expertise: ['Clinical Operations', 'Patient Care', 'Medical Standards']
+      title: 'Database Administrator (DBA)',
+      department: 'Data Management',
+      role: 'manager',
+      bio: 'Manages patient and medical data, ensures data security, backup, recovery, and database performance.',
+      experience: '18+ years in database administration',
+      expertise: ['Data Security', 'Database Performance', 'Data Backup & Recovery']
     },
     {
       id: 4,
       name: 'Mr. M.U.N. Munaweera',
-      title: 'Operations Manager',
-      department: 'System Administration',
+      title: 'Quality Assurance & Security Manager',
+      department: 'Quality Assurance',
       role: 'manager',
-      bio: 'Ensuring smooth operations and efficient system administration of all MediTrack services.',
-      experience: '12+ years in operations management',
-      expertise: ['Operations Management', 'System Administration', 'Process Optimization']
+      bio: 'Tests the system for errors, ensures software quality, protects patient information, and monitors cybersecurity.',
+      experience: '12+ years in QA & security',
+      expertise: ['Quality Assurance', 'Cybersecurity', 'System Testing']
     }
   ];
 
