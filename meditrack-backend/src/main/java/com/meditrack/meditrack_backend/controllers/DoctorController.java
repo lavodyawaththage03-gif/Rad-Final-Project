@@ -62,6 +62,8 @@ public class DoctorController {
                 map.put("consultationFee", profile.getConsultationFee());
                 map.put("liveStatus", profile.getLiveStatus());
                 map.put("about", profile.getAbout());
+                map.put("medicalRegistrationNumber", profile.getMedicalRegistrationNumber());
+                map.put("doctorId", profile.getDoctorId());
             }
             response.add(map);
         }

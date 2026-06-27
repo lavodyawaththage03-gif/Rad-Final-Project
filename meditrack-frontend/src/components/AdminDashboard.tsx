@@ -53,6 +53,9 @@ export default function AdminDashboard() {
   const [crowdStatus, setCrowdStatus] = useState('Moderate');
   const [medicines, setMedicines] = useState<any[]>([]);
   const [realDoctors, setRealDoctors] = useState<any[]>([]);
+  const [realStudents, setRealStudents] = useState<any[]>([]);
+  const [realAdmins, setRealAdmins] = useState<any[]>([]);
+  const [realPharmacists, setRealPharmacists] = useState<any[]>([]);
   const [showAddDoctorModal, setShowAddDoctorModal] = useState(false);
   const [allAppointments, setAllAppointments] = useState<any[]>([]);
   const [allSchedules, setAllSchedules] = useState<any[]>([]);
@@ -90,6 +93,7 @@ export default function AdminDashboard() {
     fetchMedicines();
     fetchCrowdStatus();
     fetchDoctors();
+    fetchAllUsers();
     fetchStats();
     fetchInventoryAlerts();
     
@@ -98,6 +102,7 @@ export default function AdminDashboard() {
       fetchInventoryAlerts();
       fetchInventory();
       fetchCmsPosts();
+      fetchAllUsers();
     }, 5000);
 
     fetchAllAppointments();
@@ -236,6 +241,28 @@ export default function AdminDashboard() {
       const res = await axios.get('http://localhost:8080/api/doctors');
       if (Array.isArray(res.data)) setRealDoctors(res.data);
     } catch (err) { console.error(err); }
+  };
+
+  const fetchAllUsers = async () => {
+    try {
+      const res = await axios.get('http://localhost:8080/api/admin/users');
+      if (Array.isArray(res.data)) {
+        setRealStudents(res.data.filter((u: any) => u.role === 'STUDENT'));
+        setRealAdmins(res.data.filter((u: any) => u.role === 'ADMIN'));
+        setRealPharmacists(res.data.filter((u: any) => u.role === 'PHARMACIST'));
+      }
+    } catch (err) { console.error(err); }
+  };
+
+  const handleDeleteUser = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (window.confirm('Are you sure you want to delete this user?')) {
+      try {
+        await axios.delete(`http://localhost:8080/api/admin/users/${id}`);
+        fetchAllUsers();
+        fetchStats();
+      } catch (err) { console.error(err); }
+    }
   };
 
   const fetchMedicines = async () => {
@@ -398,6 +425,14 @@ export default function AdminDashboard() {
           >
             <Calendar size={20} className={activeTab === 'schedule' ? 'text-purple-600' : ''} />
             Schedule & Bookings
+          </button>
+
+          <button 
+            onClick={() => setActiveTab('users')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${activeTab === 'users' ? 'bg-rose-50 text-rose-700' : 'text-slate-600 hover:bg-slate-50'}`}
+          >
+            <Users size={20} className={activeTab === 'users' ? 'text-rose-600' : ''} />
+            User Management
           </button>
 
           <button 
@@ -660,9 +695,12 @@ export default function AdminDashboard() {
                         </tr>
                       </thead>
                       <tbody>
-                        {allSchedules.map((slot, idx) => (
+                        {allSchedules.map((slot, idx) => {
+                          const doc = realDoctors.find((d: any) => d.id === slot.doctorId || d.userId === slot.doctorId);
+                          const docName = doc?.medicalRegistrationNumber ? doc.medicalRegistrationNumber : (doc ? `Dr. ${doc.firstName} ${doc.lastName}` : slot.doctorId);
+                          return (
                           <tr key={idx} className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
-                            <td className="py-4 text-slate-800 font-semibold">{slot.doctorId}</td>
+                            <td className="py-4 text-slate-800 font-semibold">{docName}</td>
                             <td className="py-4 text-slate-600">{new Date(slot.date).toLocaleDateString()}</td>
                             <td className="py-4 text-slate-600">{slot.startTime} - {slot.endTime}</td>
                             <td className="py-4">
@@ -671,12 +709,20 @@ export default function AdminDashboard() {
                               </span>
                             </td>
                           </tr>
-                        ))}
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>
                 )}
               </div>
+            </div>
+          )}
+
+          {/* ---- USER MANAGEMENT TAB ---- */}
+          {activeTab === 'users' && (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <h2 className="text-3xl font-bold text-slate-800 mb-8">User Management</h2>
 
               {/* Manage Doctors */}
               <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 hover:shadow-md transition-shadow relative">
@@ -768,6 +814,108 @@ export default function AdminDashboard() {
                     </button>
                   </div>
                 )}
+              </div>
+
+              {/* Registered Students */}
+              <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 hover:shadow-md transition-shadow relative mt-8">
+                <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+                  <h3 className="text-lg font-bold text-slate-800">Registered Students</h3>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-slate-200 text-sm text-slate-500">
+                        <th className="pb-3 font-semibold">Name</th>
+                        <th className="pb-3 font-semibold">Email</th>
+                        <th className="pb-3 font-semibold text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {realStudents.map((u, idx) => (
+                        <tr key={idx} className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                          <td className="py-4 text-slate-800 font-semibold">{u.firstName} {u.lastName}</td>
+                          <td className="py-4 text-slate-600">{u.email}</td>
+                          <td className="py-4 text-right">
+                            <button onClick={(e) => handleDeleteUser(u.id, e)} className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                              <Trash2 size={18} />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                      {realStudents.length === 0 && (
+                        <tr><td colSpan={3} className="py-8 text-center text-slate-500">No students registered yet.</td></tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Registered Pharmacists */}
+              <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 hover:shadow-md transition-shadow relative mt-8">
+                <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+                  <h3 className="text-lg font-bold text-slate-800">Registered Pharmacists</h3>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-slate-200 text-sm text-slate-500">
+                        <th className="pb-3 font-semibold">Name</th>
+                        <th className="pb-3 font-semibold">Email</th>
+                        <th className="pb-3 font-semibold text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {realPharmacists.map((u, idx) => (
+                        <tr key={idx} className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                          <td className="py-4 text-slate-800 font-semibold">{u.firstName} {u.lastName}</td>
+                          <td className="py-4 text-slate-600">{u.email}</td>
+                          <td className="py-4 text-right">
+                            <button onClick={(e) => handleDeleteUser(u.id, e)} className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                              <Trash2 size={18} />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                      {realPharmacists.length === 0 && (
+                        <tr><td colSpan={3} className="py-8 text-center text-slate-500">No pharmacists registered yet.</td></tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Registered Admins */}
+              <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 hover:shadow-md transition-shadow relative mt-8">
+                <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
+                  <h3 className="text-lg font-bold text-slate-800">Registered Admins</h3>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-slate-200 text-sm text-slate-500">
+                        <th className="pb-3 font-semibold">Name</th>
+                        <th className="pb-3 font-semibold">Email</th>
+                        <th className="pb-3 font-semibold text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {realAdmins.map((u, idx) => (
+                        <tr key={idx} className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                          <td className="py-4 text-slate-800 font-semibold">{u.firstName} {u.lastName}</td>
+                          <td className="py-4 text-slate-600">{u.email}</td>
+                          <td className="py-4 text-right">
+                            <button onClick={(e) => handleDeleteUser(u.id, e)} className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                              <Trash2 size={18} />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                      {realAdmins.length === 0 && (
+                        <tr><td colSpan={3} className="py-8 text-center text-slate-500">No admins registered yet.</td></tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           )}
